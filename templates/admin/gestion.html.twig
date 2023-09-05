@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h1>Tableau </h1>
+<table class="table container" >
+  <thead>
+    <tr>
+      <th scope="col">Vehicule</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Marque</th>
+      <th scope="col">Description</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+         {% for article in vehicules %}
+                
+             <tr>
+                <td>{{ article.id }}</td>
+                    <td>{{ article.titre }}</td>
+                    <td>{{ article.marque }}</td>
+                    <td>{{ article.description }}</td>
+                    <td> <img src="{{ article.Photo}}" alt="mon image"></td>
+                    <td>{{ article.prixJournalier}}</td>
+                    <td>
+                        {# <a href="{{ path('blog_show', {id: article.id} ) }}" class="text-info">voir</a> #}
+                        <a href="{{ path("edit_vehicule", {id: article.id}) }}" class="btn btn-primary">modifier</a>
+                    </td>
+                    <td>
+                      <a href="{{ path('delete_vehicule', {id: article.id}) }}" class="btn btn-danger">supprimer</a> 
+                    </td>
+                </tr>
+
+            {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
